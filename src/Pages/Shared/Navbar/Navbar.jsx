@@ -19,7 +19,7 @@ const Navbar = () => {
   )
 
   return (
-    <div className="">
+    <div className="" data-aos="fade-down" data-aos-duration="2000">
       <div className="navbar ">
         <div className="navbar-center">
           <div className="dropdown">
