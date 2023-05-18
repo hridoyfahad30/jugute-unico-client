@@ -1,17 +1,14 @@
 import React from "react";
+import Marquee from "react-fast-marquee";
 
 const Brand = () => {
-  return (
-    <div className="card w-96 bg-neutral text-neutral-content">
-      <div className="card-body items-center text-center">
-        <h2 className="card-title">Cookies!</h2>
-        <p>We are using cookies for no reason.</p>
-        <div className="card-actions justify-end">
-          <button className="btn btn-primary">Accept</button>
-          <button className="btn btn-ghost">Deny</button>
+  return (    
+        <div className="card w-48 h-48 bg-green-100 shadow-2xl text-primary-content mx-20">
+          <div className="card-body mx-auto">
+            <img className="rounded-2xl mb-1" src="https://i.ibb.co/PxrgvHq/image.png" alt="" />
+            <h1 className="text-black text-center text-xl font-semibold">Company Nme</h1>
+          </div>
         </div>
-      </div>
-    </div>
   );
 };
 
