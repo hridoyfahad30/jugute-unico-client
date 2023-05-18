@@ -1,6 +1,7 @@
 import React from "react";
 import Brand from "./Brand/Brand";
 import Marquee from "react-fast-marquee";
+import { FaShippingFast } from "react-icons/fa";
 
 const AllBrands = () => {
   return (
@@ -15,6 +16,25 @@ const AllBrands = () => {
         <Brand></Brand>
         <Brand></Brand>
       </Marquee>
+
+    <div>
+        <div>
+            <div>
+                <FaShippingFast />
+            </div>
+            <div>
+                <h5>Free Shipping & Return</h5>
+            </div>
+
+        </div>
+        <div>
+
+        </div>
+        <div>
+
+        </div>
+    </div>
+
     </div>
   );
 };
