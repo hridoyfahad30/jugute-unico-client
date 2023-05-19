@@ -19,7 +19,6 @@ const AddToy = () => {
 
         const toy = {name, photo, sellerName, sellerEmail, subcategory, price, rating, quantity, details}
 
-        
 
     }
 
