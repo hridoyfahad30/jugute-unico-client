@@ -47,11 +47,12 @@ const ToyTable = () => {
         {/* foot */}
         <tfoot>
           <tr>
-            <th></th>
-            <th>Name</th>
-            <th>Job</th>
-            <th>Favorite Color</th>
-            <th></th>
+          <th>Seller</th>
+            <th>Toy Name</th>
+            <th>Sub-category</th>
+            <th>Price</th>
+            <th>Available Quantity</th>
+            <th className="text-center">View Details</th>
           </tr>
         </tfoot>
       </table>
