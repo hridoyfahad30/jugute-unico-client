@@ -17,7 +17,8 @@ const AddToy = () => {
         const quantity = form.quantity.value;
         const details = form.details.value;
 
-        const toy = {name, photo, sellerName, sellerEmail, subcategory, price, rating, quantity, details}
+        const toy = {name, photo, sellerName, sellerEmail, subcategory, price, rating, quantity, details};
+        
 
 
     }
