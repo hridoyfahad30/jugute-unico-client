@@ -3,6 +3,10 @@ import { FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Signin = () => {
+
+
+    
+
   return (
     <div>
       <h1 className="text-5xl text-green-600 font-medium py-6 text-center border-b-4 border-green-600">
