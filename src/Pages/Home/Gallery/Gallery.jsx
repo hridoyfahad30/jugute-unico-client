@@ -13,7 +13,7 @@ const Gallery = () => {
 
   return (
     <div className="my-28">
-        <h1 className="text-6xl text-green-600 font-semibold my-8 pb-4 border-b-4 border-green-600">Our Super Car Gallery</h1>
+        <h1 className="text-4xl md:text-6xl text-green-600 font-semibold my-8 pb-4 border-b-4 border-green-600">Our Super Car Gallery</h1>
       <div className="grid grid-cols-3 gap-4">
         <div className=""  data-aos="fade-right" data-aos-duration="1500">
             <img className="h-72 w-full rounded-2xl brightness-50 hover:brightness-100 duration-700 hover:scale-105  " src={slide_image_1} alt="" />

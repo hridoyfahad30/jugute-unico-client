@@ -7,21 +7,21 @@ const Navbar = () => {
 
 
   const navItems = (
-    <div>
+    <div className="flex flex-col md:flex-row gap-2">
 
       <ActiveLink to='/'><button className="px-6 py-4 text-lg font-semibold text-black hover:bg-green-600 rounded-lg">Home</button></ActiveLink>
-      <ActiveLink to='/Shop'><button className="px-5 py-4 text-lg font-semibold text-black hover:bg-green-600 rounded-lg">All Toys</button></ActiveLink>
-      <ActiveLink to='/about'><button className="px-5 py-4 text-lg font-semibold text-black hover:bg-green-600 rounded-lg">My Toys</button></ActiveLink>
-      <ActiveLink to='/Service'><button className="px-5 py-4 text-lg font-semibold text-black hover:bg-green-600 rounded-lg">Add A Toy</button></ActiveLink>
-      <ActiveLink to='/Service'><button className="px-5 py-4 text-lg font-semibold text-black hover:bg-green-600 rounded-lg">Blogs</button></ActiveLink>
+      <ActiveLink to='/alltoys'><button className="px-5 py-4 text-lg font-semibold text-black hover:bg-green-600 rounded-lg">All Toys</button></ActiveLink>
+      <ActiveLink to='/mytoys'><button className="px-5 py-4 text-lg font-semibold text-black hover:bg-green-600 rounded-lg">My Toys</button></ActiveLink>
+      <ActiveLink to='/addtoy'><button className="px-5 py-4 text-lg font-semibold text-black hover:bg-green-600 rounded-lg">Add A Toy</button></ActiveLink>
+      <ActiveLink to='/blogs'><button className="px-5 py-4 text-lg font-semibold text-black hover:bg-green-600 rounded-lg">Blogs</button></ActiveLink>
 
     </div>
   )
 
   return (
-    <div className="" data-aos="fade-down" data-aos-duration="2000">
+    <div className=" mb-8 sticky top-0 backdrop-blur-lg bg-white bg-opacity-75 z-50" data-aos="fade-down" data-aos-duration="2000">
       <div className="navbar ">
-        <div className="navbar-center">
+        <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
               <svg
@@ -48,16 +48,7 @@ const Navbar = () => {
           </div>
           <Link><img className="w-24 md:w-32" src="https://i.ibb.co/3dxMCn7/image-removebg-preview.png" alt="" /></Link>
           <div>
-          <div className="input-group mx-20 hidden md:block">
-            <input
-              type="text"
-              placeholder="Search…"
-              className="input input-bordered"
-            />
-            <button className="btn btn-square bg-green-600 hover:bg-green-700">
-              <FaSearch />
-            </button>
-          </div>
+          
           
           </div>
         </div>
@@ -79,7 +70,7 @@ const Navbar = () => {
             </div>
         </Link>
         <div className="navbar-end">
-          <a className="btn bg-green-700 hover:bg-green-600">Login</a>
+          <Link to='/signin'  className="btn bg-green-700 hover:bg-green-600">SignIn</Link>
         </div>
       </div>
     </div>
