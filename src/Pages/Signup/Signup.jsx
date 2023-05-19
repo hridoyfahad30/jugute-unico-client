@@ -1,18 +1,75 @@
-import React from 'react';
-import { FaGoogle } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from "react";
+import { FaGoogle } from "react-icons/fa";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const Signup = () => {
-    return (
-        <div>
+
+  const { createUser, googleSignUp } = useContext(AuthContext);
+
+  const [err, setErr] = useState("");
+  const [success, setSuccess] = useState("");
+  const location = useLocation();
+  const from = location?.state?.from || "/";
+  const navigate = useNavigate();
+  console.log(location);
+
+  const handleEmailSignup = (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const name = form.name.value;
+    const photoUrl = form.photoUrl.value;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    console.log(email, password);
+
+    setSuccess("");
+    setErr("");
+
+    if (password.length < 6) {
+      e.target.password.focus();
+      setErr("Password at least 6 character long");
+      return;
+    }
+
+    createUser(email, password)
+      .then((res) => {
+        const createdUser = res.user;
+        updateProfile(auth.currentUser, {
+          displayName: name,
+          photoURL: photoUrl,
+        });
+        navigate(from);
+      })
+      .catch((err) => {
+        setErr(err.message);
+        return;
+      });
+  };
+
+  const handleGoogleSignUp = () => {
+    googleSignUp()
+        .then(res=> {
+            setSuccess('Signed In')
+            navigate(from)
+        })
+        .catch(err=>{
+            setErr(err.message)
+        })
+  }
+
+  return (
+    <div>
       <h1 className="text-5xl text-green-600 font-medium py-6 text-center border-b-4 border-green-600">
         Sign Up
       </h1>
-      <form>
+      <form onSubmit={handleEmailSignup}>
         <div className="hero my-8">
           <div className="hero-content flex-col lg:flex-row-reverse">
             <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-              <div className="card-body">
+              <div className="card-body w-96">
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text text-xl">Name</span>
@@ -61,30 +118,33 @@ const Signup = () => {
                     className="input input-bordered"
                   />
                   <label className="text-lg mt-4">
-                    
-                    <p>Already have an Account ? <Link to='/signin' className="text- hover:text-green-600">
-                      Signin
-                    </Link></p>
+                    <p>
+                      Already have an Account ?{" "}
+                      <Link to="/signin" className="text- hover:text-green-600">
+                        Signin
+                      </Link>
+                    </p>
                   </label>
                 </div>
                 <div className="form-control mt-2">
-                  <button className="btn bg-green-600 hover:bg-green-700 border-none">Signup</button>
+                  <input
+                    className="btn bg-green-600 hover:bg-green-700 border-none"
+                    type="submit"
+                    value="SignUp"
+                  />
                 </div>
                 <div className="form-control mt-2">
-                    <button className='flex justify-center border items-center gap-2 px-4 py-2 rounded-lg  font-medium text-lg duration-300 hover:bg-green-600' ><FaGoogle className='text-2xl' /> Sign Up with Google</button>
+                  <button onClick={handleGoogleSignUp} className="flex justify-center border items-center gap-2 px-4 py-2 rounded-lg  font-medium text-lg duration-300 hover:bg-green-600">
+                    <FaGoogle className="text-2xl" /> Sign Up with Google
+                  </button>
                 </div>
               </div>
-              
             </div>
-            
           </div>
-          
         </div>
-        
       </form>
-      
     </div>
-    );
+  );
 };
 
 export default Signup;

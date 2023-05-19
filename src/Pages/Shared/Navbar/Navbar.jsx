@@ -1,18 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import ActiveLink from './ActiveLink/ActiveLink';
 import { FaSearch, FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../AuthProvider/AuthProvider";
 
 const Navbar = () => {
+
+  const {user, logOut} = useContext(AuthContext)
+
+  const handleLogout = () => {
+        logOut();
+  }
 
 
   const navItems = (
     <div className="flex flex-col md:flex-row gap-2">
 
       <ActiveLink to='/'><button className="px-6 py-4 text-lg font-semibold text-black hover:bg-green-600 rounded-lg">Home</button></ActiveLink>
-      <ActiveLink to='/alltoys'><button className="px-5 py-4 text-lg font-semibold text-black hover:bg-green-600 rounded-lg">All Toys</button></ActiveLink>
-      <ActiveLink to='/mytoys'><button className="px-5 py-4 text-lg font-semibold text-black hover:bg-green-600 rounded-lg">My Toys</button></ActiveLink>
-      <ActiveLink to='/addtoy'><button className="px-5 py-4 text-lg font-semibold text-black hover:bg-green-600 rounded-lg">Add A Toy</button></ActiveLink>
+      {user && <ActiveLink to='/alltoys'><button className="px-5 py-4 text-lg font-semibold text-black hover:bg-green-600 rounded-lg">All Toys</button></ActiveLink>}
+      {user && <ActiveLink to='/mytoys'><button className="px-5 py-4 text-lg font-semibold text-black hover:bg-green-600 rounded-lg">My Toys</button></ActiveLink>}
+      {user && <ActiveLink to='/addtoy'><button className="px-5 py-4 text-lg font-semibold text-black hover:bg-green-600 rounded-lg">Add A Toy</button></ActiveLink>}
       <ActiveLink to='/blogs'><button className="px-5 py-4 text-lg font-semibold text-black hover:bg-green-600 rounded-lg">Blogs</button></ActiveLink>
 
     </div>
@@ -58,7 +65,7 @@ const Navbar = () => {
           </ul>
         </div>
         
-        <Link className="flex justify-center items-center gap-2 border-2 p-2 rounded-lg hover:border-green-600 duration-300 w-3/6 md:w-2/6 ml-4 md:ml-8">
+        <Link className="flex justify-center items-center gap-2 border-2 border-black p-2 rounded-lg hover:border-green-600 duration-300 w-3/6 md:w-2/6 ml-4 md:ml-8">
             <div>
                 <FaShoppingCart className="text-2xl md:text-4xl text-green-600" />
             </div>
@@ -70,7 +77,16 @@ const Navbar = () => {
             </div>
         </Link>
         <div className="navbar-end">
+          {user ?
+
+            <button onClick={handleLogout} className="btn bg-green-700 hover:bg-green-600">SignOut</button>
+
+          :
+
           <Link to='/signin'  className="btn bg-green-700 hover:bg-green-600">SignIn</Link>
+          
+          }
+
         </div>
       </div>
     </div>
