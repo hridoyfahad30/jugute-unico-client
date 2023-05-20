@@ -2,7 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const MyToyTable = ({ toy }) => {
+const MyToyTable = ({ toy, handleDelete }) => {
   const { _id, name, sellerName, price, quantity, subcategory, photo } = toy;
 
   return (
@@ -26,12 +26,12 @@ const MyToyTable = ({ toy }) => {
       <td className="text-lg">${price}</td>
       <th>{quantity}</th>
       <th className="text-center">
-        <Link to={`/toy/${_id}`} className="btn btn-ghost text-white text-lg bg-green-600 hover:bg-green-500">
+        <Link to={`/toyUpdate/${_id}`} className="btn btn-ghost text-white text-lg bg-green-600 hover:bg-green-500">
           Update 
         </Link>
       </th>
       <th className="text-center">
-        <Link to={`/toy/${_id}`} className="btn btn-ghost text-white text-lg bg-red-600 hover:bg-red-500">
+        <Link onClick={()=>handleDelete(_id)} className="btn btn-ghost text-white text-lg bg-red-600 hover:bg-red-500">
           Delete 
         </Link>
       </th>

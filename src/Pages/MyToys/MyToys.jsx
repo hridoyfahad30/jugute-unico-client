@@ -1,41 +1,65 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../AuthProvider/AuthProvider';
-import { useNavigate } from 'react-router-dom';
-import { FaSearch } from 'react-icons/fa';
-import MyToyTable from './MyToyTable';
+import React, { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
+import { useNavigate } from "react-router-dom";
+import { FaSearch } from "react-icons/fa";
+import MyToyTable from "./MyToyTable";
+import Swal from "sweetalert2";
 
 const MyToys = () => {
+  const { user } = useContext(AuthContext);
+  const [myToys, setMyToys] = useState([]);
+  const nevigate = useNavigate();
 
-    const {user} = useContext(AuthContext);
-    const [myToys, setMyToys] = useState([])
-    const nevigate = useNavigate();
+  const url = `http://localhost:5000/myToys?email=${user?.email}`;
 
+  useEffect(() => {
+    fetch(url, {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("toy-access-token")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (!data.error) {
+          setMyToys(data);
+        } else {
+          nevigate("/");
+        }
+      });
+  }, [url]);
 
-    const url = `http://localhost:5000/myToys?email=${user?.email}`;
-
-    useEffect(() => {
-        fetch(url, {
-          method: 'GET',
-          headers: {
-            authorization: `Bearer ${localStorage.getItem('toy-access-token')}` 
-          }
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/myToys/${id}`, {
+          method: "DELETE",
         })
           .then((res) => res.json())
           .then((data) => {
-            if(!data.error){
-                setMyToys(data)
+            console.log(data);
+            if (data.deletedCount > 0) {
+                Swal.fire("Deleted!", "Your file has been deleted.", "success");
+              const remaining = myToys.filter((toy) => toy._id !== id);
+              setMyToys(remaining);
             }
-            else{
-              nevigate('/')
-            }
-            });
-      }, [url]);
+          });
+        
+      }
+    });
+  };
 
-
-
-    return (
-        <div>
+  return (
+    <div>
       <div className="input-group">
         <input
           type="text"
@@ -65,7 +89,11 @@ const MyToys = () => {
             </thead>
             <tbody>
               {myToys.map((toy) => (
-                <MyToyTable key={toy._id}  toy={toy}></MyToyTable>
+                <MyToyTable
+                  key={toy._id}
+                  toy={toy}
+                  handleDelete={handleDelete}
+                ></MyToyTable>
               ))}
             </tbody>
             {/* foot */}
@@ -84,9 +112,8 @@ const MyToys = () => {
           </table>
         </div>
       </div>
-
     </div>
-    );
+  );
 };
 
 export default MyToys;

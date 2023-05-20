@@ -71,7 +71,6 @@ const Signin = () => {
         })
         .then(res => res.json())
         .then(data => {
-          console.log('jwt response', data);
           localStorage.setItem('toy-access-token', data.token)
         })
       setSuccess("Signed In");
