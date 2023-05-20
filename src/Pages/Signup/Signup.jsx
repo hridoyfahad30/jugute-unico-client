@@ -9,10 +9,14 @@ const Signup = () => {
 
   const [err, setErr] = useState("");
   const [success, setSuccess] = useState("");
+  const [check, setCheck] = useState(false);
   const location = useLocation();
   const from = location?.state?.from || "/";
   const navigate = useNavigate();
-  console.log(location);
+
+  const handleAccept = (e) => {
+    setCheck(e.target.checked)
+};
 
   const handleEmailSignup = (e) => {
     e.preventDefault();
@@ -111,12 +115,16 @@ const Signup = () => {
                     <span className="label-text text-xl">Password</span>
                   </label>
                   <input
-                    type="text"
+                    type={check? 'text' : 'password'}
                     name="password"
                     required
                     placeholder="Password"
                     className="input input-bordered"
                   />
+                  <span className='flex justify-between px-2 mt-2'><p><input onClick={handleAccept} className='accent-orange-600' type="checkbox" name="" id="" /> Show password</p></span>
+                  {
+                           err && <p className='text-lg mt-4 text-red-600 font-medium'>{err}</p>
+                  }
                   <label className="text-lg mt-4">
                     <p>
                       Already have an Account ?{" "}

@@ -1,13 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../../AuthProvider/AuthProvider";
 
 const AddToy = () => {
   const [brand, setBrand] = useState("");
+  const [subcategory, setSubcategory] = useState("");
+
+  const {user} = useContext(AuthContext)
+
+  const handleSubCategoryChange = (e) => {
+    setSubcategory(e.target.value);
+  };
   const handleBrandChange = (e) => {
     setBrand(e.target.value);
   };
-
-  console.log(brand);
 
   const handleAddToy = (e) => {
     e.preventDefault();
@@ -18,7 +24,6 @@ const AddToy = () => {
     const photo = form.photo.value;
     const sellerName = form.sellerName.value;
     const sellerEmail = form.sellerEmail.value;
-    const subcategory = form.subcategory.value;
     const price = form.price.value;
     const rating = form.rating.value;
     const quantity = form.quantity.value;
@@ -34,7 +39,7 @@ const AddToy = () => {
       rating,
       quantity,
       details,
-      brand,
+      brand
     };
 
     const options = {
@@ -67,6 +72,7 @@ const AddToy = () => {
             </label>
             <label className="input-group">
               <input
+              required
                 type="text"
                 name="name"
                 placeholder="Toy Name"
@@ -82,6 +88,7 @@ const AddToy = () => {
             </label>
             <label className="input-group">
               <input
+              required
                 type="text"
                 name="photo"
                 placeholder="Toy Picture URL "
@@ -100,9 +107,11 @@ const AddToy = () => {
             </label>
             <label className="input-group">
               <input
+              required
                 type="text"
                 name="sellerName"
                 placeholder="Seller Name"
+                defaultValue={user?.displayName}
                 className="input input-bordered w-96"
               />
             </label>
@@ -115,9 +124,10 @@ const AddToy = () => {
             </label>
             <label className="input-group">
               <input
+              required
                 type="text"
                 name="sellerEmail"
-                placeholder="Seller Email"
+                defaultValue={user?.email}
                 className="input input-bordered w-96"
               />
             </label>
@@ -125,27 +135,32 @@ const AddToy = () => {
         </div>
 
         <div className="md:flex gap-10 items-center justify-center md:my-10 ">
+    
           <div className="form-control">
             <label className="label">
-              <span className="label-text text-xl md:text-2xl">
-                Sub-category:
-              </span>
+              <span className="label-text text-xl md:text-2xl">Sub-Category:</span>
             </label>
-            <label className="input-group">
-              <input
-                type="text"
-                name="subcategory"
-                placeholder="Toy Category"
-                className="input input-bordered w-96"
-              />
-            </label>
+            <select
+            required
+              value={brand}
+              onChange={handleSubCategoryChange}
+              className="select select-success w-96"
+            >
+              <option>Chose A Sub-Category</option>
+
+              <option className="text-xl">Sports</option>
+              <option className="text-xl">Sedan</option>
+              <option className="text-xl">Convertible</option>
+            </select>
           </div>
+    
           <div className="form-control">
             <label className="label">
               <span className="label-text text-xl md:text-2xl">Price:</span>
             </label>
             <label className="input-group">
               <input
+              required
                 type="number"
                 name="price"
                 placeholder="Price"
@@ -161,6 +176,7 @@ const AddToy = () => {
             </label>
             <label className="input-group">
               <input
+              required
                 type="text"
                 name="rating"
                 placeholder="Rating"
@@ -176,6 +192,7 @@ const AddToy = () => {
             </label>
             <label className="input-group">
               <input
+              required
                 type="number"
                 name="quantity"
                 placeholder="Available Quantity
@@ -192,6 +209,7 @@ const AddToy = () => {
               <span className="label-text text-xl md:text-2xl">Brand:</span>
             </label>
             <select
+            required
               value={brand}
               onChange={handleBrandChange}
               className="select select-success w-96 md:w-[800px]"
@@ -214,6 +232,7 @@ const AddToy = () => {
             </label>
             <label className="input-group">
               <input
+              required
                 type="text"
                 name="details"
                 placeholder="Detail Description
@@ -225,6 +244,7 @@ const AddToy = () => {
         </div>
         <div className="flex justify-center">
           <input
+          required
             type="submit"
             className="btn bg-green-600 hover:bg-green-500 w-96 md:w-[800px]"
             value="ADD Toy"

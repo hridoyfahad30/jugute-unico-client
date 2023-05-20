@@ -1,4 +1,5 @@
 import React from "react";
+import { FaFacebook, FaTwitter, FaYoutube } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -29,28 +30,25 @@ const Footer = () => {
           <a className="link link-hover">Cookie policy</a>
         </div>
         <div>
-          <span className="footer-title">Newsletter</span>
-          <div className="form-control w-80">
-            <label className="label">
-              <span className="label-text">Enter your email address</span>
-            </label>
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="username@site.com"
-                className="input input-bordered w-full pr-16"
-              />
-              <button className="btn bg-green-600 hover:bg-green-500 absolute top-0 right-0 rounded-l-none">
-                Subscribe
-              </button>
-            </div>
+          <span className="footer-title">Social</span>
+          <div className="grid grid-flow-col gap-4">
+            <Link target="_blank" to='https://www.facebook.com/ILOVEYOUFAHAD'>
+              <button><FaFacebook className="text-4xl text-blue-500 hover:text-blue-600 duration-300" /></button>
+            </Link>
+            <Link target="_blank" to='https://twitter.com/hridoy_fahad30'>
+              <button><FaTwitter className="text-4xl text-blue-400 hover:text-blue-500 duration-300" /></button>
+            </Link>
+            <Link target="_blank" to='https://www.youtube.com/channel/UCvF5Qs8svG2ZXnKNU3XbGYA'>
+              <button><FaYoutube className="text-4xl text-red-500 hover:text-red-600 duration-300" /></button>
+            </Link>
+            
           </div>
         </div>
       </footer>
 
       <footer className="footer footer-center p-4 text-base-content">
         <div>
-          <p>Copyright © 2023 - All right reserved by ACME Industries Ltd</p>
+          <p>Copyright © 2023 - All right reserved by JUGUETE ÚNICO</p>
         </div>
       </footer>
     </div>

@@ -1,23 +1,19 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-
 import { EffectCoverflow, Pagination, Navigation } from 'swiper';
 
-import slide_image_1 from '../../../assets/slider_1.jpg';
-import slide_image_2 from '../../../assets/slider_2.jpg';
-import slide_image_3 from '../../../assets/slider_3.jpg';
-import slide_image_4 from '../../../assets/slider_4.jpg';
-import slide_image_5 from '../../../assets/slider_5.jpg';
-import slide_image_6 from '../../../assets/slider_6.jpg';
-import slide_image_7 from '../../../assets/slider_7.jpg';
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
+
 
 function Banner() {
+
+  const toys = useLoaderData();
+  
+
   return (
     <div className="container my-8 md:my-12" data-aos="zoom-in" data-aos-duration="2000">
       <Swiper
@@ -42,42 +38,13 @@ function Banner() {
         modules={[EffectCoverflow, Pagination, Navigation]}
         className="swiper_container"
       >
-        <SwiperSlide className='p-8'>
-          <img className='md:h-[720px] md:w-[1280px] mx-auto rounded-3xl shadow-2xl shadow-black hover:scale-105 duration-300' src={slide_image_1} alt="slide_image" />
+        {
+          toys.slice(0, 9).map(toy => <SwiperSlide key={toy._id} className='p-8'>
+          <img className='md:h-[720px] md:w-[1280px] mx-auto rounded-3xl shadow-2xl shadow-black hover:scale-105 duration-300' src={toy.photo} alt="slide_image" />
             <Link className='bg-green-600 px-8 py-4 text-2xl font-bold rounded-2xl absolute top-20 right-44 hover:bg-green-500 duration-300 animate-bounce hover:animate-none hover:shadow-2xl hover:shadow-green-500'>See Details</Link>
-            <h3 className='text-6xl font-extrabold text-green-500  absolute bottom-28 left-48 animate-pulse'>This Is a Super Car</h3>
-        </SwiperSlide>
-        <SwiperSlide className='p-8'>
-          <img className='md:h-[720px] md:w-[1280px] mx-auto rounded-3xl shadow-2xl shadow-black hover:scale-105 duration-300' src={slide_image_2} alt="slide_image" />
-          <Link className='bg-green-600 px-8 py-4 text-2xl font-bold rounded-2xl absolute top-20 right-44 hover:bg-green-500 duration-300 animate-bounce hover:animate-none hover:shadow-2xl hover:shadow-green-500 '>See Details</Link>
-          <h3 className='text-6xl font-extrabold text-green-500 absolute bottom-28 left-48 animate-pulse'>This Is a Super Car</h3>
-        </SwiperSlide>
-        <SwiperSlide className='p-8'>
-          <img className='md:h-[720px] md:w-[1280px] mx-auto rounded-3xl shadow-2xl shadow-black hover:scale-105 duration-300' src={slide_image_3} alt="slide_image" />
-          <Link className='bg-green-600 px-8 py-4 text-2xl font-bold rounded-2xl absolute top-20 right-44 hover:bg-green-500 duration-300 animate-bounce hover:animate-none hover:shadow-2xl hover:shadow-green-500 '>See Details</Link>
-          <h3 className='text-6xl font-extrabold text-green-500 absolute bottom-28 left-48 animate-pulse'>This Is a Super Car</h3>
-        </SwiperSlide>
-        <SwiperSlide className='p-8'>
-          <img className='md:h-[720px] md:w-[1280px] mx-auto rounded-3xl shadow-2xl shadow-black hover:scale-105 duration-300' src={slide_image_4} alt="slide_image" />
-          <Link className='bg-green-600 px-8 py-4 text-2xl font-bold rounded-2xl absolute top-20 right-44 hover:bg-green-500 duration-300 animate-bounce hover:animate-none hover:shadow-2xl hover:shadow-green-500 '>See Details</Link>
-          <h3 className='text-6xl font-extrabold text-green-500 absolute bottom-28 left-48 animate-pulse'>This Is a Super Car</h3>
-          
-        </SwiperSlide>
-        <SwiperSlide className='p-8'>
-          <img className='md:h-[720px] md:w-[1280px] mx-auto rounded-3xl shadow-2xl shadow-black hover:scale-105 duration-300' src={slide_image_5} alt="slide_image" />
-          <Link className='bg-green-600 px-8 py-4 text-2xl font-bold rounded-2xl absolute top-20 right-44 hover:bg-green-500 duration-300 animate-bounce hover:animate-none hover:shadow-2xl hover:shadow-green-500 '>See Details</Link>
-          <h3 className='text-6xl font-extrabold text-green-500 absolute bottom-28 left-48 animate-pulse'>This Is a Super Car</h3>
-        </SwiperSlide>
-        <SwiperSlide className='p-8'>
-          <img className='md:h-[720px] md:w-[1280px] mx-auto rounded-3xl shadow-2xl shadow-black hover:scale-105 duration-300' src={slide_image_6} alt="slide_image" />
-          <Link className='bg-green-600 px-8 py-4 text-2xl font-bold rounded-2xl absolute top-20 right-44 hover:bg-green-500 duration-300 animate-bounce hover:animate-none hover:shadow-2xl hover:shadow-green-500 '>See Details</Link>
-          <h3 className='text-6xl font-extrabold text-green-500 absolute bottom-28 left-48 animate-pulse'>This Is a Super Car</h3>
-        </SwiperSlide>
-        <SwiperSlide className='p-8'>
-          <img className='md:h-[720px] md:w-[1280px] mx-auto rounded-3xl shadow-2xl shadow-black hover:scale-105 duration-300' src={slide_image_7} alt="slide_image" />
-          <Link className='bg-green-600 px-8 py-4 text-2xl font-bold rounded-2xl absolute top-20 right-44 hover:bg-green-500 duration-300 animate-bounce hover:animate-none hover:shadow-2xl hover:shadow-green-500 '>See Details</Link>
-          <h3 className='text-6xl font-extrabold text-green-500 absolute bottom-28 left-48 animate-pulse'>This Is a Super Car</h3>
-        </SwiperSlide>
+            <h3 className='text-6xl font-extrabold text-green-700  absolute bottom-28 left-48 animate-pulse bg-gradient-to-br from-slate-300 to-gray-300 p-4 rounded-2xl shadow-2xl shadow-green-500'>{toy.name}</h3>
+        </SwiperSlide>)
+        }
 
         <div className="slider-controler">
           <div className="swiper-button-prev slider-arrow">

@@ -3,7 +3,6 @@ import { Link, useRouteError } from "react-router-dom";
 
 const Error = () => {
   const { status, error } = useRouteError();
-  console.log(status, error);
   return (
     <div className="bg-[url('https://i.ibb.co/X554b3b/bg.png')] h-screen bg-cover flex items-center justify-center">
       <div className="space-y-10">

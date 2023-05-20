@@ -9,9 +9,14 @@ const Signin = () => {
 
   const [err, setErr] = useState("");
   const [success, setSuccess] = useState("");
+  const [check, setCheck] = useState(false);
   const location = useLocation();
   const from = location?.state?.from?.pathname || "/";
   const navigate = useNavigate();
+
+  const handleAccept = (e) => {
+    setCheck(e.target.checked)
+};
 
   const handleEmailLogin = (e) => {
     e.preventDefault();
@@ -25,7 +30,22 @@ const Signin = () => {
 
     signIn(email, password)
       .then((res) => {
-        const loggedInUser = res.user;
+        const user = res.user;
+        const loggedInUser = {
+          email: user.email
+        }
+        fetch('http://localhost:5000/jwt', {
+            method: 'POST',
+            headers: {
+              'content-type': 'application/json'
+            },
+            body: JSON.stringify(loggedInUser)
+          })
+          .then(res => res.json())
+          .then(data => {
+            console.log('jwt response', data);
+            localStorage.setItem('toy-access-token', data.token)
+          })
         setSuccess("Signed In");
         navigate(from);
       })
@@ -37,10 +57,26 @@ const Signin = () => {
 
   const handleGoogleSignIn = () => {
     googleSignUp()
-        .then(res=> {
-            setSuccess('Signed In')
-            navigate(from)
+    .then((res) => {
+      const user = res.user;
+      const loggedInUser = {
+        email: user.email
+      }
+      fetch('http://localhost:5000/jwt', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify(loggedInUser)
         })
+        .then(res => res.json())
+        .then(data => {
+          console.log('jwt response', data);
+          localStorage.setItem('toy-access-token', data.token)
+        })
+      setSuccess("Signed In");
+      navigate(from);
+    })
         .catch(err=>{
             setErr(err.message)
         })
@@ -73,12 +109,16 @@ const Signin = () => {
                     <span className="label-text text-xl">Password</span>
                   </label>
                   <input
-                    type="text"
+                    type={check? 'text' : 'password'}
                     name="password"
                     required
                     placeholder="Password"
                     className="input input-bordered"
                   />
+                  <span className='flex justify-between px-2 mt-2'><p><input onClick={handleAccept} className='accent-orange-600' type="checkbox" name="" id="" /> Show password</p></span>
+                  {
+                           err && <p className='text-lg mt-4 text-red-600 font-medium'>{err}</p>
+                  }
                   <label className="text-lg mt-4">
                     <p>
                       Don&apos;t Have Account ?{" "}
