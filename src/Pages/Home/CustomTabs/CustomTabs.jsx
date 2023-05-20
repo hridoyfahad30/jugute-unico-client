@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useEffect, useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
@@ -6,19 +5,12 @@ import TabCard from "./TabCard/TabCard";
 import { useLoaderData } from "react-router-dom";
 
 const CustomTabs = () => {
-  const [subCategory, setSubCategory] = useState([]);
-
-const handleSubCategoryFilter = (sub) => {
-  useEffect(() => {
-    fetch(`http://localhost:5000/toyscategory/${sub}`)
-      .then((res) => res.json())
-      .then((res) => console.log(res))
-      .catch((err) => console.error(err));
-  }, [sub]);
   
-}
-
   const toys = useLoaderData();
+  const [brand, setBrand] = useState('BMW')
+  const [subCategory, setSubCategory] = useState('Sports'); 
+  
+  const subCategoryFilter = toys.filter(toy => toy.brand == brand && toy.subcategory == subCategory);
 
   return (
     <div className="font-semibold text-green-600 my-28">
@@ -29,13 +21,13 @@ const handleSubCategoryFilter = (sub) => {
         {/* Main category tabs */}
         <TabList>
           <Tab>
-            <p className="text-2xl md:text-4xl p-4">BMW</p>
+            <p onClick={()=>setBrand("BMW")} className="text-2xl md:text-4xl p-4">BMW</p>
           </Tab>
           <Tab>
-            <p className="text-2xl md:text-4xl p-4">Ferrari</p>
+            <p onClick={()=>setBrand("Ferrari")} className="text-2xl md:text-4xl p-4">Ferrari</p>
           </Tab>
           <Tab>
-            <p className="text-2xl md:text-4xl p-4">Mercedes</p>
+            <p onClick={()=>setBrand("Mercedes")} className="text-2xl md:text-4xl p-4">Mercedes</p>
           </Tab>
         </TabList>
 
@@ -47,7 +39,7 @@ const handleSubCategoryFilter = (sub) => {
               <Tab>
                 <p
                   onClick={() => {
-                    handleSubCategoryFilter('Racing')
+                    setSubCategory('Sports')
                   }}
                   className="text-xl md:text-2xl p-2"
                 >
@@ -57,7 +49,7 @@ const handleSubCategoryFilter = (sub) => {
               <Tab>
                 <p
                   onClick={() => {
-                    handleSubCategoryFilter('Racing')
+                    setSubCategory('Sedan')
                   }}
                   className="text-xl md:text-2xl p-2"
                 >
@@ -67,7 +59,7 @@ const handleSubCategoryFilter = (sub) => {
               <Tab>
                 <p
                   onClick={() => {
-                    handleSubCategoryFilter('Racing')
+                    setSubCategory('Convertible')
                   }}
                   className="text-xl md:text-2xl p-2"
                 >
@@ -80,33 +72,27 @@ const handleSubCategoryFilter = (sub) => {
             <TabPanel>
               {/* Content for Subcategory 1 */}
               <div className="grid md:grid-cols-3">
-                <TabCard></TabCard>
-                <TabCard></TabCard>
-                <TabCard></TabCard>
-                <TabCard></TabCard>
-                <TabCard></TabCard>
+                {
+                  subCategoryFilter.map(toy => <TabCard key={toy._id} toy={toy}></TabCard>)
+                }
               </div>
             </TabPanel>
             <TabPanel>
               {/* Content for Subcategory 2 */}
 
               <div className="grid md:grid-cols-3">
-                <TabCard></TabCard>
-                <TabCard></TabCard>
-                <TabCard></TabCard>
-                <TabCard></TabCard>
-                <TabCard></TabCard>
+                {
+                  subCategoryFilter.map(toy => <TabCard key={toy._id} toy={toy}></TabCard>)
+                }
               </div>
             </TabPanel>
             <TabPanel>
               {/* Content for Subcategory 3 */}
 
               <div className="grid md:grid-cols-3">
-                <TabCard></TabCard>
-                <TabCard></TabCard>
-                <TabCard></TabCard>
-                <TabCard></TabCard>
-                <TabCard></TabCard>
+                {
+                  subCategoryFilter.map(toy => <TabCard key={toy._id} toy={toy}></TabCard>)
+                }
               </div>
             </TabPanel>
           </Tabs>
@@ -114,15 +100,36 @@ const handleSubCategoryFilter = (sub) => {
         <TabPanel>
           {/* Subcategory tabs */}
           <Tabs>
-            <TabList>
+          <TabList>
               <Tab>
-                <p className="text-xl md:text-2xl p-2">Sports</p>
+                <p
+                  onClick={() => {
+                    setSubCategory('Sports')
+                  }}
+                  className="text-xl md:text-2xl p-2"
+                >
+                  Sports
+                </p>
               </Tab>
               <Tab>
-                <p className="text-xl md:text-2xl p-2">Sedan</p>
+                <p
+                  onClick={() => {
+                    setSubCategory('Sedan')
+                  }}
+                  className="text-xl md:text-2xl p-2"
+                >
+                  Sedan
+                </p>
               </Tab>
               <Tab>
-                <p className="text-xl md:text-2xl p-2">Convertible</p>
+                <p
+                  onClick={() => {
+                    setSubCategory('Convertible')
+                  }}
+                  className="text-xl md:text-2xl p-2"
+                >
+                  Convertible
+                </p>
               </Tab>
             </TabList>
 
@@ -131,33 +138,27 @@ const handleSubCategoryFilter = (sub) => {
               {/* Content for Subcategory 2 1 */}
 
               <div className="grid md:grid-cols-3">
-                <TabCard></TabCard>
-                <TabCard></TabCard>
-                <TabCard></TabCard>
-                <TabCard></TabCard>
-                <TabCard></TabCard>
+                {
+                  subCategoryFilter.map(toy => <TabCard key={toy._id} toy={toy}></TabCard>)
+                }
               </div>
             </TabPanel>
             <TabPanel>
               {/* Content for Subcategory 2 2 */}
 
               <div className="grid md:grid-cols-3">
-                <TabCard></TabCard>
-                <TabCard></TabCard>
-                <TabCard></TabCard>
-                <TabCard></TabCard>
-                <TabCard></TabCard>
+                {
+                  subCategoryFilter.map(toy => <TabCard key={toy._id} toy={toy}></TabCard>)
+                }
               </div>
             </TabPanel>
             <TabPanel>
               {/* Content for Subcategory 2 3 */}
 
               <div className="grid md:grid-cols-3">
-                <TabCard></TabCard>
-                <TabCard></TabCard>
-                <TabCard></TabCard>
-                <TabCard></TabCard>
-                <TabCard></TabCard>
+                {
+                  subCategoryFilter.map(toy => <TabCard key={toy._id} toy={toy}></TabCard>)
+                }
               </div>
             </TabPanel>
           </Tabs>
@@ -165,15 +166,36 @@ const handleSubCategoryFilter = (sub) => {
         <TabPanel>
           {/* Subcategory tabs */}
           <Tabs>
-            <TabList>
+          <TabList>
               <Tab>
-                <p className="text-xl md:text-2xl p-2">Sports</p>
+                <p
+                  onClick={() => {
+                    setSubCategory('Sports')
+                  }}
+                  className="text-xl md:text-2xl p-2"
+                >
+                  Sports
+                </p>
               </Tab>
               <Tab>
-                <p className="text-xl md:text-2xl p-2">Sedan</p>
+                <p
+                  onClick={() => {
+                    setSubCategory('Sedan')
+                  }}
+                  className="text-xl md:text-2xl p-2"
+                >
+                  Sedan
+                </p>
               </Tab>
               <Tab>
-                <p className="text-xl md:text-2xl p-2">Convertible</p>
+                <p
+                  onClick={() => {
+                    setSubCategory('Convertible')
+                  }}
+                  className="text-xl md:text-2xl p-2"
+                >
+                  Convertible
+                </p>
               </Tab>
             </TabList>
 
@@ -182,33 +204,27 @@ const handleSubCategoryFilter = (sub) => {
               {/* Content for Subcategory 3 1 */}
 
               <div className="grid md:grid-cols-3">
-                <TabCard></TabCard>
-                <TabCard></TabCard>
-                <TabCard></TabCard>
-                <TabCard></TabCard>
-                <TabCard></TabCard>
+                {
+                  subCategoryFilter.map(toy => <TabCard key={toy._id} toy={toy}></TabCard>)
+                }
               </div>
             </TabPanel>
             <TabPanel>
               {/* Content for Subcategory 3 2 */}
 
               <div className="grid md:grid-cols-3">
-                <TabCard></TabCard>
-                <TabCard></TabCard>
-                <TabCard></TabCard>
-                <TabCard></TabCard>
-                <TabCard></TabCard>
+                {
+                  subCategoryFilter.map(toy => <TabCard key={toy._id} toy={toy}></TabCard>)
+                }
               </div>
             </TabPanel>
             <TabPanel>
               {/* Content for Subcategory 3 3 */}
 
               <div className="grid md:grid-cols-3">
-                <TabCard></TabCard>
-                <TabCard></TabCard>
-                <TabCard></TabCard>
-                <TabCard></TabCard>
-                <TabCard></TabCard>
+                {
+                  subCategoryFilter.map(toy => <TabCard key={toy._id} toy={toy}></TabCard>)
+                }
               </div>
             </TabPanel>
           </Tabs>

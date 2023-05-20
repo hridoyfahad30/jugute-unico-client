@@ -8,7 +8,8 @@ const AddToy = () => {
 
   const {user} = useContext(AuthContext)
 
-  const handleSubCategoryChange = (e) => {
+  
+  const handleSubCategory = (e) => {
     setSubcategory(e.target.value);
   };
   const handleBrandChange = (e) => {
@@ -54,6 +55,7 @@ const AddToy = () => {
         console.log(response);
         if (response.insertedId) {
           Swal.fire("Toy Added Successfully");
+          form.reset();
         }
       })
       .catch((err) => console.error(err));
@@ -136,15 +138,14 @@ const AddToy = () => {
 
         <div className="md:flex gap-10 items-center justify-center md:my-10 ">
     
-          <div className="form-control">
+        <div className="form-control">
             <label className="label">
-              <span className="label-text text-xl md:text-2xl">Sub-Category:</span>
+              <span className="label-text text-xl md:text-2xl">Sub Category:</span>
             </label>
             <select
-            required
-              value={brand}
-              onChange={handleSubCategoryChange}
-              className="select select-success w-96"
+              value={subcategory}
+              onChange={handleSubCategory}
+              className="select select-success w-96 "
             >
               <option>Chose A Sub-Category</option>
 
@@ -209,7 +210,6 @@ const AddToy = () => {
               <span className="label-text text-xl md:text-2xl">Brand:</span>
             </label>
             <select
-            required
               value={brand}
               onChange={handleBrandChange}
               className="select select-success w-96 md:w-[800px]"

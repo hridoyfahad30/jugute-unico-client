@@ -2,10 +2,12 @@ import React, { useContext, useState } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import { updateProfile } from "firebase/auth";
 
 const Signup = () => {
 
-  const { createUser, googleSignUp } = useContext(AuthContext);
+  const { createUser, googleSignUp, auth } = useContext(AuthContext);
+
 
   const [err, setErr] = useState("");
   const [success, setSuccess] = useState("");
@@ -66,7 +68,7 @@ const Signup = () => {
 
   return (
     <div>
-      <h1 className="text-5xl text-green-600 font-medium py-6 text-center border-b-4 border-green-600">
+      <h1 className="text-5xl text-green-600 font-medium py-2 text-center border-b-4 border-green-600">
         Sign Up
       </h1>
       <form onSubmit={handleEmailSignup}>
@@ -93,7 +95,7 @@ const Signup = () => {
                   <input
                     type="text"
                     name="photoUrl"
-                    required
+                    
                     placeholder="PhotoUrl"
                     className="input input-bordered"
                   />

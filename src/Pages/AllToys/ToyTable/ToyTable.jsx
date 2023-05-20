@@ -26,7 +26,7 @@ const ToyTable = ({ toy }) => {
       <td className="text-lg">${price}</td>
       <th>{quantity}</th>
       <th className="">
-        <Link to={`/toy/${_id}`} className="btn btn-ghost btn-xs bg-green-600 hover:bg-green-500">
+        <Link to={`/toy/${_id}`} className="btn btn-ghost text-lg bg-green-600 hover:bg-green-500">
           View Details 
         </Link>
       </th>

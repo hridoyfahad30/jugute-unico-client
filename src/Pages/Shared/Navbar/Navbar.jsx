@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import ActiveLink from "./ActiveLink/ActiveLink";
-import { FaShoppingCart } from "react-icons/fa";
+import { FaShoppingCart, FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 
@@ -10,7 +10,7 @@ const Navbar = () => {
   const handleLogout = () => {
     logOut()
       .then(() => {
-        localStorage.removeItem('toy-access-token')
+        localStorage.removeItem("toy-access-token");
       })
       .catch((err) => {
         console.log(err);
@@ -24,13 +24,13 @@ const Navbar = () => {
           Home
         </button>
       </ActiveLink>
-      
-        <ActiveLink to="/alltoys">
-          <button className="px-5 py-4 text-lg font-semibold text-black hover:bg-green-600 rounded-lg">
-            All Toys
-          </button>
-        </ActiveLink>
-      
+
+      <ActiveLink to="/alltoys">
+        <button className="px-5 py-4 text-lg font-semibold text-black hover:bg-green-600 rounded-lg">
+          All Toys
+        </button>
+      </ActiveLink>
+
       {user && (
         <ActiveLink to="/mytoys">
           <button className="px-5 py-4 text-lg font-semibold text-black hover:bg-green-600 rounded-lg">
@@ -55,7 +55,7 @@ const Navbar = () => {
 
   return (
     <div
-      className=" mb-8 sticky top-0 backdrop-blur-lg bg-white bg-opacity-75 z-50"
+      className=" mb-6 sticky top-0 backdrop-blur-lg bg-white bg-opacity-75 z-50"
       data-aos="fade-down"
       data-aos-duration="2000"
     >
@@ -110,19 +110,36 @@ const Navbar = () => {
           </div>
         </Link>
         <div className="navbar-end">
-          {
-            user &&
+          {user && (
+            <div>
+              {
+                user?.photoURL ?
 
-            <div            
-            className="tooltip tooltip-bottom mx-4 md:mr-8 mt-2"
-            data-tip={user.displayName}
-          >
-            <div className="avatar online">
-              <div className="w-10 rounded-full ring ring-green-600 ring-offset-base-100 ring-offset-2">
-                <img src={user.photoURL} />
+                <div
+                className="tooltip tooltip-bottom mx-4 md:mr-8 mt-2"
+                data-tip={user?.displayName}
+              >
+                <div className="avatar online">
+                  <div className="w-10 rounded-full ring ring-green-600 ring-offset-base-100 ring-offset-2">
+                    <img src={user?.photoURL} />
+                  </div>
+                </div>
               </div>
+              :
+              <div
+                className="tooltip tooltip-bottom mx-4 md:mr-8 mt-2"
+                data-tip={user?.displayName}
+              >
+                <div className="avatar online">
+                  <div className="w-10 rounded-full ring ring-green-600 ring-offset-base-100 ring-offset-2">
+                    <FaUser className="text-4xl text-center" />
+                  </div>
+                </div>
+              </div>
+
+              }
             </div>
-          </div> }
+          )}
 
           {user ? (
             <button

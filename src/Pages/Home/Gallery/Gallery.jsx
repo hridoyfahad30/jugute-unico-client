@@ -51,11 +51,11 @@ const Gallery = () => {
 
         </div>
         <div className=""  data-aos="fade-up" data-aos-duration="1000">
-            <img className="h-72 w-full rounded-2xl brightness-50 hover:brightness-100 duration-500 hover:scale-105 " src={toys[7].photo} alt="" />
+            <img className="h-72 w-full rounded-2xl brightness-50 hover:brightness-100 duration-500 hover:scale-105 " src={toys[10].photo} alt="" />
 
         </div>
         <div className=""  data-aos="fade-left" data-aos-duration="1500">
-            <img className="h-72 w-full rounded-2xl brightness-50 hover:brightness-100 duration-500 hover:scale-105 " src={toys[8].photo} alt="" />
+            <img className="h-72 w-full rounded-2xl brightness-50 hover:brightness-100 duration-500 hover:scale-105 " src={toys[11].photo} alt="" />
 
         </div>
       </div>
