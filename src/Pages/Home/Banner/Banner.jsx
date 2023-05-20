@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
@@ -6,12 +6,38 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { EffectCoverflow, Pagination, Navigation } from 'swiper';
 
-import { Link, useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import { AuthContext } from '../../../AuthProvider/AuthProvider';
 
 
 function Banner() {
 
+  const {user} = useContext(AuthContext)
   const toys = useLoaderData();
+  const nevigate = useNavigate();
+
+  const handleViewDetails = (_id) => {
+    
+    if(!user){
+      Swal.fire({
+        title: 'You have to log in first to view details',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: 'green',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'OK'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          nevigate(`/toy/${_id}`)
+        }
+      })
+    }
+    else{
+      nevigate(`/toy/${_id}`)
+    }
+    
+  }
   
 
   return (
@@ -41,7 +67,7 @@ function Banner() {
         {
           toys.slice(0, 14).map(toy => <SwiperSlide key={toy._id} className='p-8'>
           <img className='md:h-[720px] md:w-[1280px] mx-auto rounded-3xl shadow-2xl shadow-black hover:scale-105 duration-300' src={toy.photo} alt="slide_image" />
-            <Link to={`/toy/${toy._id}`} className='bg-green-600 px-8 py-4 text-2xl font-bold rounded-2xl absolute top-20 right-44 hover:bg-green-500 duration-300 animate-bounce hover:animate-none hover:shadow-2xl hover:shadow-green-500'>See Details</Link>
+            <button onClick={()=> handleViewDetails(toy._id)} className='bg-green-600 px-8 py-4 text-2xl font-bold rounded-2xl absolute top-20 right-44 hover:bg-green-500 duration-300 animate-bounce hover:animate-none hover:shadow-2xl hover:shadow-green-500'>See Details</button>
             <h3 className='text-6xl font-extrabold text-green-700  absolute bottom-28 left-48 animate-pulse bg-gradient-to-br from-slate-300 to-gray-300 p-4 rounded-2xl shadow-2xl shadow-green-500'>{toy.name}</h3>
         </SwiperSlide>)
         }   

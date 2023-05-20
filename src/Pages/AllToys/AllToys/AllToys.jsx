@@ -1,22 +1,38 @@
 /* eslint-disable react/no-unescaped-entities */
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ToyTable from "../ToyTable/ToyTable";
 import { FaSearch } from "react-icons/fa";
 import { useLoaderData } from "react-router-dom";
 
 const AllToys = () => {
 
-  const toys = useLoaderData();
+  const [searchText, setSearchText] = useState("");
+  const [toys, setToys] = useState([]);
+
+  useEffect(()=>{
+
+    fetch(`http://localhost:5000/toys`)
+    .then(res => res.json())
+    .then(data => setToys(data))
+
+  },[])
+
+  const handleSearch = () => {
+    fetch(`http://localhost:5000/toySearch/${searchText}`)
+    .then(res => res.json())
+    .then(data => setToys(data))
+  }
 
   return (
     <div>
       <div className="input-group">
         <input
+          onChange={(e)=>{setSearchText(e.target.value)}}
           type="text"
           placeholder="Search by Toy Name…"
           className="input input-bordered"
         />
-        <button className="btn btn-square bg-green-600 hover:bg-green-700">
+        <button onClick={handleSearch} className="btn btn-square bg-green-600 hover:bg-green-700">
           <FaSearch />
         </button>
       </div>

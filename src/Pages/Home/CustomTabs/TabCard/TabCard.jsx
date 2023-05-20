@@ -1,11 +1,37 @@
 /* eslint-disable react/prop-types */
 import { Rating } from "@smastrom/react-rating";
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { AuthContext } from "../../../../AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const TabCard = ({toy}) => {
 
   const {_id, photo, name, price, rating} = toy;
+  const nevigate = useNavigate();
+
+  const {user} = useContext(AuthContext);
+
+  const handleViewDetails = (id) => {
+    if(!user){
+      Swal.fire({
+        title: 'You have to log in first to view details',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: 'green',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'OK'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          nevigate(`/toy/${id}`)
+        }
+      })
+    }
+    else{
+      nevigate(`/toy/${id}`)
+    }
+    
+  }
 
 
   return (
@@ -27,9 +53,11 @@ const TabCard = ({toy}) => {
         </div>
 
         <div className="card-actions justify-center mt-4">
-        <Link to={`/toy/${_id}`} className="btn btn-ghost text-lg text-white bg-green-600 hover:bg-green-500">
+
+          <button onClick={()=>handleViewDetails(_id)} className="btn btn-ghost text-lg text-white bg-green-600 hover:bg-green-500">
           View Details 
-        </Link>
+        </button>
+        
         </div>
       </div>
     </div>
