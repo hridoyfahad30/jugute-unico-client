@@ -5,7 +5,7 @@ import "@smastrom/react-rating/style.css";
 
 const ToyDetails = () => {
   const toyDetails = useLoaderData();
-  const { photo, name, sellerName, price, rating, quantity, details } =
+  const { photo, name, sellerName, sellerEmail, price, rating, quantity, details } =
     toyDetails;
 
   return (
@@ -23,7 +23,8 @@ const ToyDetails = () => {
           </h2>
           <p className="text-xl my-4">{details}</p>
           <div>
-          <h5 className="text-lg">Seller Name: <span className="text-lg font-semibold">{sellerName}</span></h5>
+          <h5 className="text-lg my-2">Seller Name: <span className="text-lg font-semibold">{sellerName}</span></h5>
+          <h5 className="text-lg my-2">Seller Email: <span className="text-lg font-semibold">{sellerEmail}</span></h5>
           </div>
           <div className="card-actions justify-between">
             <div>Quantity: <span className="text-lg font-semibold">{quantity}</span> pics</div>

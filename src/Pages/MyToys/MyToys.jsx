@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 const MyToys = () => {
   const { user } = useContext(AuthContext);
   const [myToys, setMyToys] = useState([]);
+  const [searchText, setSearchText] = useState("");
   const nevigate = useNavigate();
 
   const url = `http://localhost:5000/myToys?email=${user?.email}`;
@@ -29,6 +30,13 @@ const MyToys = () => {
         }
       });
   }, [url]);
+
+
+  const handleSearch = () => {
+    fetch(`http://localhost:5000/toySearch/${searchText}`)
+    .then(res => res.json())
+    .then(data => setMyToys(data))
+  }
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -62,11 +70,12 @@ const MyToys = () => {
     <div>
       <div className="input-group">
         <input
+         onChange={(e)=>setSearchText(e.target.value)}
           type="text"
           placeholder="Search by Toy Name…"
           className="input input-bordered"
         />
-        <button className="btn btn-square bg-green-600 hover:bg-green-700">
+        <button onClick={handleSearch} className="btn btn-square bg-green-600 hover:bg-green-700">
           <FaSearch />
         </button>
       </div>

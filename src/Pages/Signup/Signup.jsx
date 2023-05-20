@@ -57,10 +57,25 @@ const Signup = () => {
 
   const handleGoogleSignUp = () => {
     googleSignUp()
-        .then(res=> {
-            setSuccess('Signed In')
-            navigate(from)
+    .then((res) => {
+      const user = res.user;
+      const loggedInUser = {
+        email: user.email
+      }
+      fetch('http://localhost:5000/jwt', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify(loggedInUser)
         })
+        .then(res => res.json())
+        .then(data => {
+          localStorage.setItem('toy-access-token', data.token)
+        })
+      setSuccess("Signed In");
+      navigate(from);
+    })
         .catch(err=>{
             setErr(err.message)
         })
