@@ -21,7 +21,7 @@ const MyToys = () => {
     }, 400);
   }, []);
 
-  const url = `http://localhost:5000/myToys?email=${user?.email}`;
+  const url = `https://toy-server-tau.vercel.app/myToys?email=${user?.email}`;
 
   useEffect(() => {
     fetch(url, {
@@ -42,7 +42,7 @@ const MyToys = () => {
 
 
   const handleSearch = () => {
-    fetch(`http://localhost:5000/toySearch/${searchText}`)
+    fetch(`https://toy-server-tau.vercel.app/toySearch/${searchText}`)
     .then(res => res.json())
     .then(data => setMyToys(data))
   }
@@ -58,7 +58,7 @@ const MyToys = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/myToys/${id}`, {
+        fetch(`https://toy-server-tau.vercel.app/myToys/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

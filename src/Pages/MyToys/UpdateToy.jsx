@@ -38,7 +38,7 @@ const UpdateToy = () => {
       body: JSON.stringify(updatedToy),
     };
 
-    fetch(`http://localhost:5000/toy/${_id}`, options)
+    fetch(`https://toy-server-tau.vercel.app/toy/${_id}`, options)
       .then((response) => response.json())
       .then((response) => {
         console.log(response);

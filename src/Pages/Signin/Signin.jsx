@@ -43,7 +43,7 @@ const Signin = () => {
         const loggedInUser = {
           email: user.email
         }
-        fetch('http://localhost:5000/jwt', {
+        fetch('https://toy-server-tau.vercel.app/jwt', {
             method: 'POST',
             headers: {
               'content-type': 'application/json'
@@ -71,7 +71,7 @@ const Signin = () => {
       const loggedInUser = {
         email: user.email
       }
-      fetch('http://localhost:5000/jwt', {
+      fetch('https://toy-server-tau.vercel.app/jwt', {
           method: 'POST',
           headers: {
             'content-type': 'application/json'

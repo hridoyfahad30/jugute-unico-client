@@ -17,19 +17,19 @@ const AllToys = () => {
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/toys/limit`)
+    fetch(`https://toy-server-tau.vercel.app/toys/limit`)
       .then((res) => res.json())
       .then((data) => setToys(data));
   }, []);
 
   const handleSeeMore = () => {
-    fetch(`http://localhost:5000/toys`)
+    fetch(`https://toy-server-tau.vercel.app/toys`)
       .then((res) => res.json())
       .then((data) => setToys(data));
   }
 
   const handleSearch = () => {
-    fetch(`http://localhost:5000/toySearch/${searchText}`)
+    fetch(`https://toy-server-tau.vercel.app/toySearch/${searchText}`)
       .then((res) => res.json())
       .then((data) => setToys(data));
   };
