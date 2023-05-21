@@ -1,21 +1,16 @@
 import React from "react";
-import slide_image_1 from '../../../assets/slider_1.jpg';
-import slide_image_2 from '../../../assets/slider_2.jpg';
-import slide_image_3 from '../../../assets/slider_3.jpg';
-import slide_image_4 from '../../../assets/slider_4.jpg';
-import slide_image_5 from '../../../assets/slider_5.jpg';
-import slide_image_6 from '../../../assets/slider_6.jpg';
-import slide_image_7 from '../../../assets/slider_7.jpg';
 import { useLoaderData } from "react-router-dom";
+
 
 const Gallery = () => {
 
-    const toys = useLoaderData();
+    const toys = useLoaderData();     
 
     
 
   return (
-    <div className="my-28">
+    <div className="container mx-auto my-28">
+        
         <h1 className="text-4xl md:text-6xl text-green-600 font-semibold my-8 pb-4 border-b-4 border-green-600">Our Super Car Gallery</h1>
       <div className="grid grid-cols-3 gap-4">
         <div className=""  data-aos="fade-right" data-aos-duration="1500">

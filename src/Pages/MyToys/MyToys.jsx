@@ -5,12 +5,21 @@ import { useNavigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import MyToyTable from "./MyToyTable";
 import Swal from "sweetalert2";
+import { PulseLoader } from "react-spinners";
 
 const MyToys = () => {
   const { user } = useContext(AuthContext);
   const [myToys, setMyToys] = useState([]);
   const [searchText, setSearchText] = useState("");
   const nevigate = useNavigate();
+  const [reactLoading, setReactLoading] = useState(false);
+
+  useEffect(() => {
+    setReactLoading(true);
+    setTimeout(() => {
+      setReactLoading(false);
+    }, 400);
+  }, []);
 
   const url = `http://localhost:5000/myToys?email=${user?.email}`;
 
@@ -67,61 +76,76 @@ const MyToys = () => {
   };
 
   return (
-    <div>
-      <div className="input-group">
-        <input
-         onChange={(e)=>setSearchText(e.target.value)}
-          type="text"
-          placeholder="Search by Toy Name…"
-          className="input input-bordered"
-        />
-        <button onClick={handleSearch} className="btn btn-square bg-green-600 hover:bg-green-700">
-          <FaSearch />
-        </button>
-      </div>
-
-      <div>
-        <div className="overflow-x-auto w-full">
-          <table className="table w-full">
-            {/* head */}
-            <thead>
-              <tr>
-                <th>Seller</th>
-                <th>Toy Name</th>
-                <th>Sub-category</th>
-                <th>Price</th>
-                <th>Available Quantity</th>
-                <th></th>
-                <th></th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {myToys.map((toy) => (
-                <MyToyTable
-                  key={toy._id}
-                  toy={toy}
-                  handleDelete={handleDelete}
-                ></MyToyTable>
-              ))}
-            </tbody>
-            {/* foot */}
-            <tfoot>
-              <tr>
-                <th>Seller</th>
-                <th>Toy Name</th>
-                <th>Sub-category</th>
-                <th>Price</th>
-                <th>Available Quantity</th>
-                <th></th>
-                <th></th>
-                <th></th>
-              </tr>
-            </tfoot>
-          </table>
+    <>
+      {
+        reactLoading ? (
+          <PulseLoader className="text-center mt-96" color="#36d7b7" />
+        ) :
+        
+        <div className="container mx-auto mt-8">
+        <div className="input-group">
+          <input
+          onChange={(e)=>setSearchText(e.target.value)}
+            type="text"
+            placeholder="Search by Toy Name…"
+            className="input input-bordered"
+          />
+          <button onClick={handleSearch} className="btn btn-square bg-green-600 hover:bg-green-700">
+            <FaSearch />
+          </button>
         </div>
-      </div>
-    </div>
+
+        <div>
+          <div className="overflow-x-auto w-full">
+            <table className="table w-full">
+              {/* head */}
+              <thead>
+                <tr>
+                  <th>Seller</th>
+                  <th>Toy Name</th>
+                  <th>Sub-category</th>
+                  <th>Price</th>
+                  <th>Available Quantity</th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  myToys.length == 0 ?
+
+                  <button className="btn bg-green-600 loading my-4">loading</button>
+                  :
+
+              <> {myToys.map((toy) => (
+                  <MyToyTable
+                    key={toy._id}
+                    toy={toy}
+                    handleDelete={handleDelete}
+                  ></MyToyTable>
+                ))}
+                </>
+                }
+              </tbody>
+              {/* foot */}
+              <tfoot>
+                <tr>
+                  <th>Seller</th>
+                  <th>Toy Name</th>
+                  <th>Sub-category</th>
+                  <th>Price</th>
+                  <th>Available Quantity</th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>}
+    </>
   );
 };
 

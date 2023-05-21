@@ -50,7 +50,7 @@ const UpdateToy = () => {
   };
 
   return (
-    <div>
+    <div className="container mx-auto mt-8">
       <h1 className="text-2xl md:text-4xl text-center font-semibold text-green-600">
         Update Toy
       </h1>

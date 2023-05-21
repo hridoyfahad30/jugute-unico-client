@@ -38,7 +38,7 @@ const TabCard = ({toy}) => {
     <div className="card w-96 glass hover:shadow-2xl hover:shadow-green-300 my-10 duration-300 mx-auto" data-aos="fade-up">
       <figure>
         <img
-          className="p-4"
+          className="h-56 w-full"
           src={photo}
           alt="car!"
         />

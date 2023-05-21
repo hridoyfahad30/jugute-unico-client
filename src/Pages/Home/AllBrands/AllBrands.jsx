@@ -9,18 +9,18 @@ const AllBrands = () => {
   const toys = useLoaderData();
 
   return (
-    <div className="my-28">
+    <div className="container mx-auto my-28">
       <h1 className="text-4xl md:text-6xl text-green-600 font-semibold my-8 pb-4 border-b-4 border-green-600">
         All Brands
       </h1>
-      <Marquee className="h-72">
+      <Marquee pauseOnHover={true} className="h-72">
         {
           toys.map(toy => <Brand key={toy._id} toy={toy}></Brand>)
         }
       </Marquee>
 
-    <div className="flex justify-around flex-wrap gap-5 items-center my-6 md:my-12 bg-gradient-to-br from-lime-200 to-green-200  py-12" data-aos="zoom-in" data-aos-duration="700">
-        <div className="flex items-center gap-3 border-2 border-black p-2 rounded-xl w-96">
+    <div className="flex justify-around flex-wrap gap-5 items-center my-6 md:my-12 bg-gradient-to-br from-lime-200 to-green-200  py-12" data-aos="zoom-in">
+        <div className="flex items-center gap-3 border-2 border-black p-2 rounded-xl w-96" data-aos="fade-right" data-aos-duration="3000">
             <div>
                 <FaShippingFast className="text-7xl text-green-600 border-4 border-green-700 rounded-full p-2" />
             </div>
@@ -30,7 +30,7 @@ const AllBrands = () => {
             </div>
 
         </div>
-        <div className="flex items-center gap-3 border-2 border-black p-2 rounded-xl w-96">
+        <div className="flex items-center gap-3 border-2 border-black p-2 rounded-xl w-96" data-aos="fade-up" data-aos-duration="3000">
             <div>
                 <FaDollarSign className="text-7xl text-green-600 border-4  border-green-700 rounded-full p-2" />
             </div>
@@ -40,7 +40,7 @@ const AllBrands = () => {
             </div>
 
         </div>
-        <div className="flex items-center gap-3 border-2 border-black p-2 rounded-xl w-96">
+        <div className="flex items-center gap-3 border-2 border-black p-2 rounded-xl w-96" data-aos="fade-left" data-aos-duration="3000">
             <div>
                 <FaTeamspeak className="text-7xl text-green-600 border-4  border-green-700 rounded-full p-2" />
             </div>

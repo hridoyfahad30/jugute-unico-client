@@ -1,17 +1,34 @@
-import React from 'react';
-import Navbar from '../Pages/Shared/Navbar/Navbar';
-import { Outlet } from 'react-router-dom';
-import Footer from '../Pages/Shared/Footer/Footer';
+import React, { useEffect, useState } from "react";
+import Navbar from "../Pages/Shared/Navbar/Navbar";
+import { Outlet } from "react-router-dom";
+import Footer from "../Pages/Shared/Footer/Footer";
+import ScrollToTop from "../../ScrollToTop";
+import { PulseLoader } from "react-spinners";
 
 const MainLayout = () => {
-    return (
-        <div className='container mx-auto px-2'>
-            <Navbar></Navbar>
-            <Outlet></Outlet>
-            <Footer></Footer>
-            
+  const [reactLoading, setReactLoading] = useState(false);
+
+  useEffect(() => {
+    setReactLoading(true);
+    setTimeout(() => {
+      setReactLoading(false);
+    }, 400);
+  }, []);
+
+  return (
+    <>
+      {reactLoading ? (
+        <PulseLoader className="text-center mt-96 bg-transparent" color="#36d7b7" />
+      ) : (
+        <div className=" mx-auto">
+          <ScrollToTop></ScrollToTop>
+          <Navbar></Navbar>
+          <Outlet></Outlet>
+          <Footer></Footer>
         </div>
-    );
+      )}
+    </>
+  );
 };
 
 export default MainLayout;
