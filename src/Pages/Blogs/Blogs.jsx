@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { FaDotCircle, FaExternalLinkSquareAlt } from "react-icons/fa";
+import useTitle from "../../Utilitys/TitleFunction";
 
 const Blogs = () => {
-  const [open, setOpen] = useState(false);
+  useTitle('JUGUETE ÚNICO | Blogs');
 
   return (
     <div className="container mx-auto">

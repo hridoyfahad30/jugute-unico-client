@@ -3,11 +3,14 @@ import React, { useEffect, useState } from "react";
 import ToyTable from "../ToyTable/ToyTable";
 import { FaSearch } from "react-icons/fa";
 import { PulseLoader } from "react-spinners";
+import useTitle from "../../../Utilitys/TitleFunction";
 
 const AllToys = () => {
   const [searchText, setSearchText] = useState("");
   const [toys, setToys] = useState([]);
   const [reactLoading, setReactLoading] = useState(false);
+
+  useTitle('JUGUETE ÚNICO | AllToys');
 
   useEffect(() => {
     setReactLoading(true);

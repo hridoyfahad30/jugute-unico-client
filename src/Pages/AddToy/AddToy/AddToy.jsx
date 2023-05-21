@@ -2,11 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import { PulseLoader } from "react-spinners";
+import useTitle from "../../../Utilitys/TitleFunction";
 
 const AddToy = () => {
   const [brand, setBrand] = useState("");
   const [subcategory, setSubcategory] = useState("");
   const [reactLoading, setReactLoading] = useState(false);
+
+  useTitle('JUGUETE ÚNICO | AddToy');
 
   useEffect(() => {
     setReactLoading(true);

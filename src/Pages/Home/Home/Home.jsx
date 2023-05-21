@@ -6,9 +6,11 @@ import AllBrands from "../AllBrands/AllBrands";
 import Map from "../Map/Map";
 import OurLocation from "../OurLocation/OurLocation";
 import { PulseLoader } from "react-spinners";
+import useTitle from "../../../Utilitys/TitleFunction";
 
 const Home = () => {
-
+  
+useTitle('JUGUETE ÚNICO | Home');
 
   const [reactLoading, setReactLoading] = useState(false);
 

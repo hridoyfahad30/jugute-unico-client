@@ -6,6 +6,7 @@ import { FaSearch } from "react-icons/fa";
 import MyToyTable from "./MyToyTable";
 import Swal from "sweetalert2";
 import { PulseLoader } from "react-spinners";
+import useTitle from "../../Utilitys/TitleFunction";
 
 const MyToys = () => {
   const { user } = useContext(AuthContext);
@@ -13,6 +14,7 @@ const MyToys = () => {
   const [searchText, setSearchText] = useState("");
   const nevigate = useNavigate();
   const [reactLoading, setReactLoading] = useState(false);
+  useTitle('JUGUETE ÚNICO | MyToys');
 
   useEffect(() => {
     setReactLoading(true);
