@@ -7,7 +7,7 @@ import {
 
 const OurLocation = () => {
     return (
-        <div className="space-y-6" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="700">
+        <div className="space-y-6 px-2" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="700">
             <h1 className="text-4xl md:text-6xl text-green-600 font-semibold my-8 pb-4 border-b-4 border-green-600">Our Location</h1>
           
           <p>

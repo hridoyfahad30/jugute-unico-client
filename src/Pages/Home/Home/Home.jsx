@@ -32,7 +32,7 @@ const Home = () => {
       <Gallery></Gallery>
       <CustomTabs></CustomTabs>
       <AllBrands></AllBrands>
-      <div className="container mx-auto ">
+      <div className="container mx-auto px-2">
       <h1 className="text-4xl md:text-6xl text-green-600 font-semibold my-8 pb-4 border-b-4 border-green-600">Find Us</h1>
         <div className="md:flex items-center gap-20">
           <Map></Map>

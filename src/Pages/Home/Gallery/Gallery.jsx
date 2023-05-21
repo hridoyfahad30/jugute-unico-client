@@ -9,7 +9,7 @@ const Gallery = () => {
     
 
   return (
-    <div className="container mx-auto my-28">
+    <div className="container mx-auto md:my-28 px-2">
         
         <h1 className="text-4xl md:text-6xl text-green-600 font-semibold my-8 pb-4 border-b-4 border-green-600">Our Super Car Gallery</h1>
       <div className="grid grid-cols-3 gap-4">

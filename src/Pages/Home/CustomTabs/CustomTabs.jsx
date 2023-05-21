@@ -14,9 +14,9 @@ const CustomTabs = () => {
   );
 
   return (
-    <div className="bg-fixed bg-[url('https://i.ibb.co/hMDNmv5/wallpaperflare-com-wallpaper-5-1.jpg')] md:py-1">
-      <div className="container mx-auto font-semibold text-green-600 my-28">
-        <h1 className="text-4xl md:text-6xl text-green-600 font-semibold my-8 pb-4 border-b-4 border-green-600">
+    <div className="bg-fixed bg-[url('https://i.ibb.co/hMDNmv5/wallpaperflare-com-wallpaper-5-1.jpg')] md:py-1 px-2">
+      <div className="container mx-auto font-semibold text-green-600 md:my-28">
+        <h1 className="text-4xl md:text-6xl text-green-600 font-semibold my-8 pb-4 border-b-4 border-green-600 pt-8">
           Categories
         </h1>
         <Tabs>
