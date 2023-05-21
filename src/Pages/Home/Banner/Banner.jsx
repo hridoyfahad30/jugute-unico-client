@@ -36,7 +36,7 @@ function Banner() {
   };
 
   return (
-      <div className="bg-fixed bg-[url('https://i.ibb.co/C8gdQnV/wallpaperflare-com-wallpaper-3-1.jpg')]">
+      <div className="bg-fixed py-20 -mt-16 bg-[url('https://i.ibb.co/C8gdQnV/wallpaperflare-com-wallpaper-3-1.jpg')]">
       <div
         className="container mx-auto md:py-8"
         data-aos="zoom-in"

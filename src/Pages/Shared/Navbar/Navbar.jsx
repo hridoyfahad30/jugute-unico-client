@@ -57,8 +57,6 @@ const Navbar = () => {
     <div className="sticky top-0 backdrop-blur-3xl z-50">
       <div
         className="container mx-auto sticky backdrop-blur-lg z-50"
-        data-aos="fade-down"
-        data-aos-duration="800"
       >
         <div className="navbar ">
           <div className="navbar-start">
@@ -88,7 +86,7 @@ const Navbar = () => {
             </div>
             <Link>
               <img
-                className="w-24 md:w-32"
+                className="w-24 md:w-32 brightness-150"
                 src="https://i.ibb.co/3dxMCn7/image-removebg-preview.png"
                 alt=""
               />
