@@ -35,7 +35,7 @@ const TabCard = ({toy}) => {
 
 
   return (
-    <div className="card w-96 glass hover:shadow-2xl hover:shadow-green-300 my-10 duration-300 mx-auto" data-aos="fade-up">
+    <div className="card w-96 glass hover:shadow-2xl hover:shadow-green-300 my-10 duration-300 mx-auto hover:brightness-125" data-aos="fade-up">
       <figure>
         <img
           className="h-56 w-full"
