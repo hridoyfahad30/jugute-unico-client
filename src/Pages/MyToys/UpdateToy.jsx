@@ -2,10 +2,12 @@ import React, { useContext, useState } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { useLoaderData } from "react-router-dom";
+import useTitle from "../../Utilitys/TitleFunction";
 
 const UpdateToy = () => {
   const [brand, setBrand] = useState("");
   const [subcategory, setSubcategory] = useState("");
+  useTitle('JUGUETE ÚNICO | UpdateToy');
 
   const {user} = useContext(AuthContext);
   const toyDetails = useLoaderData();

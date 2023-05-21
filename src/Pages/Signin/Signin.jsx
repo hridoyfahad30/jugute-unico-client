@@ -3,6 +3,7 @@ import { FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { PulseLoader } from "react-spinners";
+import useTitle from "../../Utilitys/TitleFunction";
 
 const Signin = () => {
 
@@ -15,6 +16,7 @@ const Signin = () => {
   const from = location?.state?.from?.pathname || "/";
   const navigate = useNavigate();
   const [reactLoading, setReactLoading] = useState(false);
+  useTitle('JUGUETE ÚNICO | Signin');
 
   useEffect(() => {
     setReactLoading(true);

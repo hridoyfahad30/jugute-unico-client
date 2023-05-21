@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { updateProfile } from "firebase/auth";
 import { PulseLoader } from "react-spinners";
+import useTitle from "../../Utilitys/TitleFunction";
 
 const Signup = () => {
 
@@ -17,6 +18,7 @@ const Signup = () => {
   const from = location?.state?.from || "/";
   const navigate = useNavigate();
   const [reactLoading, setReactLoading] = useState(false);
+  useTitle('JUGUETE ÚNICO | Signup');
 
   useEffect(() => {
     setReactLoading(true);
