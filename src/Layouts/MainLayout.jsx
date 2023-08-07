@@ -4,6 +4,7 @@ import { Outlet } from "react-router-dom";
 import Footer from "../Pages/Shared/Footer/Footer";
 import ScrollToTop from "../../ScrollToTop";
 import { PulseLoader } from "react-spinners";
+import Offer from "../components/Offer/Offer";
 
 const MainLayout = () => {
   const [reactLoading, setReactLoading] = useState(false);
@@ -22,6 +23,7 @@ const MainLayout = () => {
       ) : (
         <div className=" mx-auto">
           <ScrollToTop></ScrollToTop>
+          <Offer />
           <Navbar></Navbar>
           <Outlet></Outlet>
           <Footer></Footer>
