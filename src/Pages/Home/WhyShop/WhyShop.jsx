@@ -6,7 +6,7 @@ const WhyShop = () => {
       <h1 className="text-4xl md:text-6xl text-green-600 font-semibold my-8 pb-4 border-b-4 border-green-600 mx-36">
         Why shop with us?
       </h1>
-      <div className="flex justify-around items-center my-12 bg-[url('https://i.ibb.co/61rHF9t/360-F-217894165-H4j-Ral-Q4eg9-Kp8-XUVGEa7-XFDEPt-TQ9-PY.jpg')] bg-cover py-12">
+      <div className="flex justify-around items-center my-12 py-12">
         <div className="flex flex-col justify-center items-center  mx-auto">
           <img
           className="w-24 my-4"

@@ -9,6 +9,7 @@ import { PulseLoader } from "react-spinners";
 import useTitle from "../../../Utilitys/TitleFunction";
 import Policy from "../Policy/Policy";
 import WhyShop from "../WhyShop/WhyShop";
+import NewsLetter from "../NewsLetter/NewsLetter";
 
 const Home = () => {
   
@@ -36,6 +37,7 @@ useTitle('JUGUETE ÚNICO | Home');
       <Gallery></Gallery>
       <WhyShop />
       <CustomTabs></CustomTabs>
+      <NewsLetter />
       <AllBrands></AllBrands>
       <Policy />
       <div className="container mx-auto px-2">

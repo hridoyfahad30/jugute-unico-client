@@ -36,7 +36,7 @@ function Banner() {
   };
 
   return (
-      <div className="bg-fixed pt-20 pb-8 -mt-16 bg-[url('https://i.ibb.co/C8gdQnV/wallpaperflare-com-wallpaper-3-1.jpg')]">
+      <div className="bg-fixed pt-20 pb-8 -mt-16 bg-gradient-to-tr from-green-200 to-lime-200">
       <div
         className="container mx-auto md:py-8"
         data-aos="zoom-in"
@@ -65,7 +65,7 @@ function Banner() {
           className="swiper_container"
         >
           {toys.slice(0, 14).map((toy) => (
-            <SwiperSlide key={toy._id} className="p-10">
+            <SwiperSlide key={toy._id} className="p-10 backdrop-blur-xl">
               <img
                 className="h-44 md:h-[720px] w-80 md:w-[1280px] mx-auto rounded-3xl shadow-2xl shadow-black hover:scale-105 duration-300"
                 src={toy.photo}

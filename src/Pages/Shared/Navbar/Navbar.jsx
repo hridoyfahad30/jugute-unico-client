@@ -50,6 +50,11 @@ const Navbar = () => {
           Blogs
         </button>
       </ActiveLink>
+      <ActiveLink to="/about">
+        <button className="px-5 py-4 text-lg font-semibold text-black hover:bg-green-600 rounded-lg">
+          About
+        </button>
+      </ActiveLink>
     </div>
   );
 
